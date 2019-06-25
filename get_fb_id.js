@@ -58,7 +58,7 @@ function get_fb_id(html) {
 
 	html = '';
 
-	browser.runtime.sendMessage({
+	chrome.runtime.sendMessage({
 	    command: "set_facebook_id",
 	    facebook_id: profileID,
 	    facebook_type: profileType

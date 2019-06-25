@@ -45,7 +45,7 @@ function add_warning() {
 	alert_code += "var t = ' <tt>Intercepting requests: ' + o + '</tt><br />';";
 	alert_code +=  "t += '<tt>Replacing with query:  ' + q  + '</tt><br />';";
 	alert_code += "div.innerHTML = t;";
-	browser.tabs.executeScript({ code: alert_code });
+	chrome.tabs.executeScript({ code: alert_code });
 }
 
 function remove_old_results() {
@@ -59,7 +59,7 @@ function remove_old_results() {
 	clear_code += "if(e) { e.innerHTML = ''; }";
 	clear_code += "if(f) { f.innerHTML = ''; }";
 	clear_code += "if(g) { g.innerHTML = ''; }";	
-	browser.tabs.executeScript({ code: clear_code });
+	chrome.tabs.executeScript({ code: clear_code });
 }
 
 function redirect(requestDetails) {
@@ -131,14 +131,14 @@ function redirect(requestDetails) {
 }
 
 // set listener for redirection
-browser.webRequest.onBeforeRequest.addListener(
+chrome.webRequest.onBeforeRequest.addListener(
   redirect,
   {urls:[pattern]},
   ["blocking"]
 );
 
 // set listener for messages from the popup interface
-browser.runtime.onMessage.addListener((message) => {
+chrome.runtime.onMessage.addListener((message) => {
 	if (message.command === "set_query") {
 		console.log('Setting query to ' + message.query);
 		query = message.query;

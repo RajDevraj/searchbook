@@ -10,7 +10,7 @@
 
 function set_query() {
   query = document.getElementById('query').value;
-  browser.runtime.sendMessage({
+  chrome.runtime.sendMessage({
     command: "set_query",
     query: document.getElementById('query').value
   });
@@ -21,7 +21,7 @@ function set_query() {
 
 function clear_query() {
   console.log('Removing query');
-  browser.runtime.sendMessage({ command: "clear_query" });
+  chrome.runtime.sendMessage({ command: "clear_query" });
   window.localStorage.setItem('facebook-search-query','');
   document.getElementById('current_query').innerHTML = '';
   document.getElementById('query').value = '';
@@ -81,7 +81,7 @@ document.addEventListener("click", (e) => {
 });
 
 // set listener for printing Facebook IDs
-browser.runtime.onMessage.addListener((message) => {
+chrome.runtime.onMessage.addListener((message) => {
   if (message.command === "set_facebook_id") {
     facebook_id = message.facebook_id;
     facebook_type = message.facebook_type;
@@ -90,4 +90,4 @@ browser.runtime.onMessage.addListener((message) => {
 });
 
 // trying to get facebook ID of element
-browser.tabs.executeScript({ file: '/get_fb_id.js' });
+chrome.tabs.executeScript({ file: '/get_fb_id.js' });
