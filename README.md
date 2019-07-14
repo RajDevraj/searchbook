@@ -80,4 +80,8 @@ You can also search for date intervals:
 
 ## License
 
+<<<<<<< HEAD
+This code is free: you can do what you want with it.
+=======
 This code is free
+>>>>>>> cf7ed915a8a44084b67acd73a85fd4de7d2c2797
